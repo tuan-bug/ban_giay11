@@ -1,0 +1,58 @@
+{% extends 'admin/manage.html' %}
+{% load static %}
+
+{% block viewmanageorder %}
+    <div class="container align-items-center bg-white border">
+        <div class="row" style="width:100%">
+
+            <div class="col-md-1"></div>
+            <div class="col-md-10 pt-4 mb-3">
+                <h4 class="text-center">HÓA ĐƠN</h4>
+                <hr>
+                <div class="box-element pt-2" id="form-wrapper">
+                    <div id="shipping-info">
+                        <h5>Tên khách hàng: {{ order.customer.username }}</h5>
+
+                        <p>Địa chỉ nhận hàng:
+                            <span>{{ order.address.name_user }}</span> ,
+                            <span>{{ order.address.mobile }}</span>,
+                            <span>{{ order.address.adress }}</span>,
+                            <span>{{ order.address.commune }}</span>,
+                            <span>{{ order.address.district }}</span>,
+                            <span>{{ order.address.city }}</span>
+                        </p>
+                    </div>
+                    {% for item in items %}
+                        <div style="border: black 1px" class="d-flex mt-4 justify-content-md-between">
+                            <div class="d-flex">
+                                <div>
+                                    <img src="{{ item.product.ImageURL }}" style="width: 100px; height: auto;" alt="">
+                                </div>
+
+                                <div class="ml-2">
+                                    <ul style="list-style: none; font-size: 14px;">
+                                        <li class=""><b>Tên mặt hàng: {{ item.product.name }}</b></li>
+                                        <li class="">Số tiền: {{ item.product.price }} VNĐ</li>
+                                        <li class="">Số lượng: {{ item.quantity }} Đôi</li>
+                                        <li class="">Size: {{ item.size }} </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center">
+                                Tổng:{{ item.total | floatformat:2 }} VNĐ
+
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    <div class="d-flex flex-column float-right">
+                        <div class="float-right text-lg-right">
+                            <h5><b>Thành tiền:</b> {{ total|floatformat:2 }} VNĐ</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+{% endblock viewmanageorder %}

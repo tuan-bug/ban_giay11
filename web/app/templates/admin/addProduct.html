@@ -1,0 +1,237 @@
+{% extends 'admin/manage.html' %}
+{% load static %}
+{% block blog-product %}
+    <div class="container mt-4 bg-white" style="background-color: #ffffff; border: 1px solid #a8a4a4; border-radius: 5px">
+        <div class="p-2">
+            <h4 class=" text-center mt-2">THÊM SẢN PHẨM</h4>
+        </div>
+        <hr>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="categoryName">Tên Sản Phẩm:</label>
+                        {{ product_form.name }}
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="categoryDescription">Đơn vị</label>
+                        {{ product_form.unit }}
+                    </div>
+                </div>
+                <div class="col-12 d-flex">
+                    <div class="form-group">
+                        {{ product_form.category }}
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="categoryDescription">Giá</label>
+                        {{ product_form.price }}
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="categoryDescription">Giá sale</label>
+                        {{ product_form.price_sale }}
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="categoryDescription">Mô tả</label>
+                        {{ product_form.describe }}
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="{{ product_form.image.id_for_label }}">Chọn ảnh: </label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                {{ product_form.image }}
+                                <label class="custom-file-label" for="{{ product_form.image.id_for_label }}"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label>Danh sách ảnh: </label>
+                        <input type="file" class="form-control" name="listImages" multiple>
+
+                    </div>
+                </div>
+                <div id="form-container">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="{{ product_form.image.id_for_label }}">Size: </label>
+                                <input class="form-control" type="text" name="sizes[]" placeholder="Size">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="{{ product_form.image.id_for_label }}">Số lượng: </label>
+                                <input class="form-control" type="text" name="quantities[]" placeholder="Số lượng">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center mb-2">
+                    <button class="btn btn-primary text-center mr-2" id="add-form">Thêm size</button>
+                    <button type="submit" class="btn btn-primary text-center">Thêm sản phẩm</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var formContainer = document.querySelector('#form-container');
+            var addButton = document.querySelector('#add-form');
+
+            addButton.addEventListener('click', function (e) {
+                e.preventDefault();
+                var formHtml = `
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="{{ product_form.image.id_for_label }}">Size: </label>
+                                <input class="form-control" type="text" name="sizes[]" placeholder="Size">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="{{ product_form.image.id_for_label }}">Số lượng: </label>
+                                <input class="form-control" type="text" name="quantities[]" placeholder="Số lượng">
+                            </div>
+                        </div>
+                    </div>
+                `;
+                formContainer.insertAdjacentHTML('beforeend', formHtml);
+            });
+        });
+    </script>
+
+
+    {% comment %} <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> {% endcomment %}
+
+{% endblock blog-product %}
+{% comment %} <form method="POST" action="" enctype="multipart/form-data">
+            <div class="row">
+                {% csrf_token %}
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="categoryName">Tên Sản Phẩm:</label>
+                        {{ form.name }}
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="categoryDescription">Đơn vị</label>
+                        {{ form.unit }}
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="{{ form.category.id_for_label }}">Thuộc danh mục: </label><br>
+                        {% for choice in form.category %}
+                            <div class="form-check form-check-inline">
+                                {{ choice }}
+                                <label class="form-check-label d-flex" for="{{ choice.id_for_label }}"></label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="categoryDescription">Giá</label>
+                        {{ form.price }}
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="categoryDescription">Giá sale</label>
+                        {{ form.price_sale }}
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="categoryDescription">Mô tả</label>
+                        {{ form.describe }}
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="categoryDescription">Số lượng sezi 39</label>
+                    {{ form.count39 }}
+                </div>
+                <div class="form-group">
+                    <label for="categoryDescription">Số lượng sezi 40</label>
+                    {{ form.count40 }}
+                </div>
+                <div class="form-group">
+                    <label for="categoryDescription">Số lượng sezi 41</label>
+                    {{ form.count41 }}
+                </div>
+
+
+                <div class="form-group">
+                    <label for="{{ form.image.id_for_label }}">Chọn ảnh: </label>
+                    <div class="input-group">
+                        <div class="custom-file">
+                            {{ form.image }}
+                            <label class="custom-file-label" for="{{ form.image.id_for_label }}"></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.image.id_for_label }}">Chọn ảnh: </label>
+                    <div class="input-group">
+                        <div class="custom-file">
+                            {{ form.image1 }}
+                            <label class="custom-file-label" for="{{ form.image.id_for_label }}"></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.image.id_for_label }}">Chọn ảnh: </label>
+                    <div class="input-group">
+                        <div class="custom-file">
+                            {{ form.image2 }}
+                            <label class="custom-file-label" for="{{ form.image.id_for_label }}"></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.image.id_for_label }}">Chọn ảnh: </label>
+                    <div class="input-group">
+                        <div class="custom-file">
+                            {{ form.image3 }}
+                            <label class="custom-file-label" for="{{ form.image.id_for_label }}"></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.image.id_for_label }}">Chọn ảnh: </label>
+                    <div class="input-group">
+                        <div class="custom-file">
+                            {{ form.image4 }}
+                            <label class="custom-file-label" for="{{ form.image.id_for_label }}"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary text-center">Thêm sản phẩm</button>
+                </div>
+
+            </div>
+        </form> {% endcomment %}

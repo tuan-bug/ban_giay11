@@ -1,0 +1,62 @@
+{% extends 'admin/manage.html' %}
+{% load static %}
+{% block blog-product %}
+    <div class="container mt-4 bg-white" style="background-color: #ffffff; border: 1px solid #a8a4a4; border-radius: 5px">
+        <div class="p-2">
+            <h4 class=" text-center mt-2">THÊM NGƯỜI DÙNG</h4>
+        </div>
+        <hr>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="categoryName">Tên Đăng Nhập:</label>
+                        {{ form.username }}
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="categoryDescription">Email</label>
+                        {{ form.email }}
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="categoryDescription">Họ</label>
+                        {{ form.first_name }}
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="categoryDescription">Tên</label>
+                        {{ form.last_name }}
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="categoryDescription">Nhập mật khẩu</label>
+                        {{ form.password1 }}
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="categoryDescription">Xác nhận mật khẩu</label>
+                        {{ form.password2 }}
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center mb-2">
+
+                    <button type="submit" class="btn btn-primary text-center">Lưu thông tin</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    {% comment %} <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> {% endcomment %}
+
+{% endblock blog-product %}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chỉnh Sửa Người Dùng</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Chỉnh Sửa Người Dùng</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Cập Nhật</button>
+    </form>
+{#    {% if messages %}#}
+{#        <div class="mt-3">#}
+{#            {% for message in messages %}#}
+{#                <div class="alert alert-success">{{ message }}</div>#}
+{#            {% endfor %}#}
+{#        </div>#}
+{#    {% endif %}#}
+</div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+{% extends 'admin/manage.html' %}
+{% load static %}
+{% block blog-product %}
+    <div class="container mt-4 bg-white" style="width: 550px;border-radius: 5px; border: 1px solid #939090">
+        <h4 class="mb-3 pt-3 text-center">SỬA DANH MỤC</h4>
+        <hr>
+        <form method="POST" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="categoryName">Danh Mục:</label>
+                {{ form.sub_category }}
+            </div>
+            <div class="form-group">
+                <label for="categoryDescription">Thuộc Danh Mục Con: </label>
+                {{ form.is_sub }}
+            </div>
+            <div class="form-group">
+                <label for="categoryDescription">Tên Danh Mục</label>
+                {{ form.name }}
+            </div>
+            <div class="form-group">
+                <label for="categoryDescription">Đường Dẫn</label>
+                {{ form.slug }}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.image.id_for_label }}">Chọn ảnh: </label>
+                <div class="input-group">
+                    <div class="custom-file">
+                        {{ form.image }}
+                        <label class="custom-file-label" for="{{ form.image.id_for_label }}"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center mb-3">
+            <button type="submit" class="btn btn-primary">Sửa Danh Mục</button>
+
+            </div>
+        </form>
+
+    </div>
+    <style>
+        #id_sub_category {
+
+            display: block;
+            width: 100%;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: var(--bs-body-color);
+            background-color: var(--bs-body-bg);
+            background-clip: padding-box;
+            border: var(--bs-border-width) solid var(--bs-border-color);
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border-radius: var(--bs-border-radius);
+            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+{% endblock blog-product %}

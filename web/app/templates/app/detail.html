@@ -1,0 +1,64 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block category_context %}
+
+    <section class="product-details spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="product__details__pic">
+                        <div class="product__details__pic__item">
+                            <img class="product__details__pic__item--large"
+                                 src="{{ products.ImageURL }}" alt="">
+                        </div>
+                        <div class="product__details__pic__slider owl-carousel">
+                            {% for image in lstImage %}
+                                <img data-imgbigurl="img/product/details/product-details-2.jpg"
+                                     src="{{ image.ImageURL }}" alt="11111">
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="product__details__text">
+                        <h3>{{ products.name }}</h3>
+                        <div class="product__details__rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-o"></i>
+                        </div>
+                        <div class="product__details__price">{{ products.formatted_price }} VND</div>
+                        <p>{{ products.describe }}</p>
+                        <div class="product__details__quantity">
+                        </div>
+                        <div class="container">
+                            <h2>Size</h2>
+                            {% for size in lstSize %}
+                                <div class="form-check form-check-inline">
+
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="optionsRadios" id="size39"
+                                               value="{{ size.size }}"> {{ size.size }}
+                                    </label>
+
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <button style="border: none" data-product={{ products.id }} data-action="addProduct"
+                                class="primary-btn add-btn update-btn ">Thêm vào giỏ hàng
+                        </button>
+
+                        <ul>
+                            <li><b>Tình trạng</b> <span>Còn hàng.</span></li>
+                            <li><b>GIao hàng</b> <span>2-5 ngày.</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock category_context %}

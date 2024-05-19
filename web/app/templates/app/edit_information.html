@@ -1,0 +1,31 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block edit_information %}
+    <div class="container mt-4 mb-3" style="width: 550px; border: #1b1e21">
+    <h2 class="mb-4 text-center">SỬA THÔNG TIN</h2>
+      <form method="POST" action="" >
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="categoryName">Tên: </label>
+            {{ form.last_name }}
+        </div>
+
+          
+
+          <div class="form-group">
+              <label for="categoryName">Họ: </label>
+              {{ form.first_name }}
+          </div>
+
+          <div class="form-group">
+            <label for="categoryName">Email người dùng: </label>
+            {{ form.email }}
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="primary-btn border-0 text-center">Sửa Thông Tin</button>
+        </div>
+      </form>
+    </div>
+
+{% endblock edit_information %}

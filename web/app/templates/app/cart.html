@@ -1,0 +1,78 @@
+
+{% extends 'app/base.html' %}
+{% load static %}
+{% block cart_content %}
+
+
+    <section class="shoping-cart spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="shoping__cart__table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="shoping__product">Mặt hàng</th>
+                                    <th>Size</th>
+                                    <th>Giá</th>
+                                    <th>Số lượng</th>
+                                    <th>Tổng tiền</th>
+    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in items %}
+                                <tr>
+                                    <td class="shoping__cart__item">
+                                        <img style="height: 100px" src="{{item.product.ImageURL}}" alt="">
+                                        <h5>{{item.product.name}}</h5>
+                                    </td>
+                                    <td class="shoping__cart__price">
+                                        {{item.size}}
+                                    </td><td class="shoping__cart__total">
+                                        {{item.price}} VND
+                                    </td>
+                                    
+                                    <td class="shoping__cart__quantity">
+                                        <div class="quantity">
+                                            <div class="">
+                                                <button data-product={{item.product.id}} data-action="remove" data-size="{{item.size}}" style="width:30px;" class="btn btn-outline-secondary reduce-btn" type="button">-</button>
+                                                <input style="width: 60px;" type="number"  value="{{item.quantity}}">
+                                                <button data-product={{item.product.id}} data-action="add" data-size="{{item.size}}" style="width:30px;" class="btn btn-outline-secondary increase-btn" type="button">+</button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="shoping__cart__total">
+                                        {{ item.total }} VND
+                                    </td>
+                                    <td class="shoping__cart__item__close">
+{#                                        <span class="icon_close"></span>#}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="shoping__cart__btns">
+                        <a href="{% url 'home' %}" class="primary-btn cart-btn">Tiếp tục mua</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div style="margin-top: 0px" class="shoping__checkout">
+                        <h5>Tổng tiền trong giỏ hàng</h5>
+                        <ul>
+                            <li>Số sản phẩm <span>{{count}}</span></li>
+                            <li>Thành tiền <span>{{total_all }} VND</span></li>
+                        </ul>
+                        <a href="{% url 'checkout' %}" class="primary-btn">Đặt hàng</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock cart_content %}

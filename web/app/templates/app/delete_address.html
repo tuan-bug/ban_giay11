@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Xóa địa chỉ</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .content {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #f8f8f8;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #ff0000; /* Màu nền của nút Xóa */
+            color: #fff; /* Màu chữ trên nút Xóa */
+            border: none;
+            cursor: pointer;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333; /* Màu chữ cho liên kết Hủy */
+            margin-left: 10px; /* Khoảng cách giữa nút Xóa và liên kết Hủy */
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h2>Xóa Địa Chỉ</h2>
+        <p>Bạn chắc chắn muốn xóa địa chỉ "{{ category.name }}"?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Xóa</button>
+            <a href="{% url 'information' %}">Hủy</a>
+        </form>
+    </div>
+</body>
+</html>

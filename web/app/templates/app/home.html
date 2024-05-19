@@ -1,0 +1,197 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block shop-content %}
+
+<div id="carouselExampleDark" class="carousel carousel-dark slide">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="10000">
+        <img src="{% static 'app/images/slide2.png'%}"  class="d-block w-100" alt="...">
+      </div>
+
+      <div class="carousel-item" data-bs-interval="2000">
+        <img src="{% static 'app/images/slide1.png'%}"  class="d-block w-100" alt="...">
+      </div>
+
+      <div class="carousel-item">
+        <img src="{% static 'app/images/slide3.png'%}"  class="d-block w-100" alt="...">
+      </div>
+    </div>
+  </div>
+
+
+
+{% comment %} <section class="categories">
+    <div class="container">
+        <div class="row">
+            <div class="categories__slider owl-carousel">
+                {% for category in categories %}
+                <div class="col-lg-3">
+                    <div class="categories__item set-bg" data-setbg="{{category.ImageURL}}  ">  
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section> {% endcomment %}
+
+
+<section class="product spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="sidebar__item">
+                    <h4>Thương Hiệu</h4>
+                    <ul>
+                        {% for category in categories %}
+                            <li><a href="{% url 'category' %}?category={{ category.slug }}">{{ category.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="row">
+                    {% for product in products %}
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="{{ product.ImageURL }}">
+                                    <ul class="product__item__pic__hover">
+                                    </ul>
+                                </div>
+                                <div class="product__item__text">
+                                    <h6><a href="{% url 'detail' %}?id={{ product.id }}" >{{ product.name }}</a></h6>
+                                    <h5>{{ product.formatted_price }} VND</h5>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="from-blog spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title from-blog__title">
+                    <h2>Thông Tin</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="blog__item">
+                    <div class="blog__item__pic">
+                        <img src="{% static 'app/images/blog1.jpg'%}" alt="">
+                    </div>
+                    <div class="blog__item__text">
+                        <ul>
+                            <li><i class="fa fa-calendar-o"></i> 20/5/2024</li>
+                            <li><i class="fa fa-comment-o"></i> 5</li>
+                        </ul>
+                        <h5><a href="#">Top 6 đôi giày đá bóng chân bè được ưa chuộng nhất 2023</a></h5>
+                        <p>Với rất nhiều ae chơi bóng ở Việt Nam thì nỗi khổ khi tìm một đôi giày đá bóng dành cho chân bè là thường trực. Những người  chân bè ám chỉ những aecó bàn chân rộng hơn so với bình thường. Điều này có nghĩa là chiều rộng của bàn chân, đặc biệt là […] </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="blog__item">
+                    <div class="blog__item__pic">
+                        <img src="{% static 'app/images/blog2.jpg'%}" alt="">
+                    </div>
+                    <div class="blog__item__text">
+                        <ul>
+                            <li><i class="fa fa-calendar-o"></i> 26/05/2024</li>
+                            <li><i class="fa fa-comment-o"></i> 3</li>
+                        </ul>
+                        <h5><a href="#">Chính thức release siêu phẩm Adidas X Speedportal L10IO M35SI 2023 siêu độc</a></h5>
+                        <p>Siêu phẩm dành riêng cho siêu sao Messi đã được xác nhận sẽ release trong vài ngày tới, khoảng ngày 21/02/2023, Signature Editon đầu tiên trong năm nay hứa hẹn rất nhiều điều đặc biệt. Tên đầy đủ của nó có thể là Adidas X Speedportal L10NEL M35SI, trong đó tên của anh được viết cách […] </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="blog__item">
+                    <div class="blog__item__pic">
+                        <img src="{% static 'app/images/blog3.jpg'%}" alt="">
+                    </div>
+                    <div class="blog__item__text">
+                        <ul>
+                            <li><i class="fa fa-calendar-o"></i> 15/05/2024</li>
+                            <li><i class="fa fa-comment-o"></i> 1</li>
+                        </ul>
+                        <h5><a href="#">Pack màu Adidas Showdown chỉ dành cho một số ít cầu thủ !</a></h5>
+                        <p>Pack màu Adidas Showdown chỉ dành cho một số ít cầu thủ vừa mới được giới thiệu ngày 20/5/2022. Đây là khoảng thời gian chuẩn bị kết thúc mùa giải, khi mà vinh quang đã gọi tên hoặc sẽ được lên tiếng trong vài ngày tới. Món quà của hãng giày đá bóng đến từ […] </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section_service">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <div class="wraptem d-flex">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <img style="width:70px; height: auto;" src="//bizweb.dktcdn.net/100/347/092/themes/708609/assets/srv_1.png?1693397506492" alt="icon">
+                    </div>
+                    <div class="content_right ml-2">
+                        <span>VẬN CHUYỂN SIÊU TỐC</span>
+                        <br>
+                        <span>Vận chuyển Thái Nguyên trong 2 tiếng!</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <div class="wraptem d-flex">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <img style="width:70px; height: auto;" src="//bizweb.dktcdn.net/100/347/092/themes/708609/assets/srv_2.png?1693397506492" alt="icon">
+                    </div>
+                    <div class="content_right ml-2">
+                        <span>Đổi hàng</span>
+                        <br>
+                        <span>Đổi hàng trong 7 ngày miễn phí!</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <div class="wraptem d-flex">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <img style="width:70px; height: auto;" src="//bizweb.dktcdn.net/100/347/092/themes/708609/assets/srv_3.png?1693397506492" alt="icon">
+                    </div>
+                    <div class="content_right ml-2">
+                        <span>Tiết kiệm thời gian</span>
+                        <br>
+                        <span>Mua sắm dễ hơn khi online</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <div class="wraptem d-flex">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <img style="width:70px; height: auto;" src="//bizweb.dktcdn.net/100/347/092/themes/708609/assets/srv_4.png?1693397506492" alt="icon">
+                    </div>
+                    <div class="content_right ml-2">
+                        <span>ĐỊA CHỈ CỬA HÀNG</span>
+                        <br>
+                        <span>Đường Z 115, Quyết Thắng,Thái Nguyên</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    
+{% endblock shop-content %}

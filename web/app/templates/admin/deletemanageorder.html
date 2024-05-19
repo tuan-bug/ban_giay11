@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CYROCHI</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .content {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #f8f8f8;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #ff0000; /* Màu nền của nút Xóa */
+            color: #fff; /* Màu chữ trên nút Xóa */
+            border: none;
+            cursor: pointer;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333; /* Màu chữ cho liên kết Hủy */
+            margin-left: 10px; /* Khoảng cách giữa nút Xóa và liên kết Hủy */
+        }
+    </style>
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">Xóa Đơn Hàng</h2>
+            <p class="card-text">Bạn chắc chắn muốn xóa đơn hàng?</p>
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Xóa</button>
+                <a href="{% url 'myOrder' %}" class="btn btn-secondary">Hủy</a>
+            </form>
+        </div>
+    </div>
+</div>
+

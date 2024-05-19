@@ -1,0 +1,376 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>CYROECHI</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+        <!-- Css Styles -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+        <link rel="stylesheet" href="{%static 'app/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{%static 'app/css/font-awesome.min.css' %}">
+        <link rel="stylesheet" href="{%static 'app/css/elegant-icons.css' %}">
+        <link rel="stylesheet" href="{%static 'app/css/nice-select.css' %}">
+        <link rel="stylesheet" href="{%static 'app/css/jquery-ui.min.css' %}">
+        <link rel="stylesheet" href="{%static 'app/css/owl.carousel.min.css' %}">
+        <link rel="stylesheet" href="{%static 'app/css/slicknav.min.css' %}">
+        <link rel="stylesheet" href="{%static 'app/css/style.css' %}">
+        <link rel="stylesheet" href="{%static 'app/sass/style.scss' %}">
+
+        <script type="text/javascript" >
+          var user = '{{request.user}}'
+          function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = getCookie('csrftoken');
+        </script>
+
+    </head>
+    <body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Humberger Begin -->
+    <div class="humberger__menu__overlay"></div>
+    <div class="humberger__menu__wrapper">
+        <div class="humberger__menu__logo">
+            {% comment %} <a href="#"><img src="img/logo.png" alt=""></a> {% endcomment %}
+        </div>
+        <div class="humberger__menu__cart">
+            <ul>
+                <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+            </ul>
+            <div class="header__cart__price">item: <span>150.00VNĐ</span></div>
+        </div>
+        <div class="humberger__menu__widget">
+            <div class="header__top__right__auth">
+                <a href="{% url 'login' %}"><i class="fa fa-user"></i> Đăng Nhập</a>
+            </div>
+        </div>
+        
+        <div id="mobile-menu-wrap"></div>
+        <div class="header__top__right__social">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-pinterest-p"></i></a>
+        </div>
+        <div class="humberger__menu__contact">
+            <ul>
+                <li><i class="fa fa-envelope"></i> Hotline đặt hàng: 0999999999</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Humberger End -->
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="header__top__left">
+                            <ul>
+                                <li><i class="fa fa-envelope"></i> Đường dây nóng: 0999999999--Hòm thư: Cyroechi@gmail.com</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="header__top__right">
+                            <div class="header__top__right__social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-linkedin"></i></a>
+                                <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                            </div>
+    
+                            <div class="header__top__right__auth dropdown " style="display: {{ user_login }}">
+                                <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false"  href="{% url 'login' %} " ><i class="fa fa-user"></i>Xin chào {{request.user}}</a>
+                                <!-- Dropdown Menu -->
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="{% url 'information' %}">Thông tin</a>
+                                    <a class="dropdown-item" href="{% url 'myOrder' %}">Đơn hàng của tôi</a>
+                                    <a style="display: {{ show_manage }}" class="dropdown-item" href="{% url 'manage' %}">Trang quản trị</a>
+                                    <a class="dropdown-item" href="{% url 'logout' %}">Đăng xuất</a>
+                                    <!-- Add more options as needed -->
+                                </div>
+                            </div>
+                            
+                            <div class="header__top__right__auth" style="display: {{ user_not_login }}">
+                                <a href="{% url 'login' %} " ><i class="fa fa-user"></i>Đăng nhập</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section style="padding-top: 20px;" class="hero hero-normal">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2">
+                        <div class="header__logo">
+                            <a href="{% url 'home' %}"><img src="{% static 'app/images/logoo.png'%}" width="160" height="60" alt=""></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 " style="height: {{ fixed_height }}">
+                        <div class="hero__search">
+                            <div class="hero__search__form">
+                                <form method="POST" action="{% url 'search' %}">
+                                    {% csrf_token %}
+                                    <input type="text" placeholder="" name="searched"    >
+                                    <button type="submit" class="site-btn">Tìm kiếm</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-1">
+                        <div class="header__cart">
+                            <ul>
+                                <li><a href="{% url 'cart' %}"><i class="fa fa-shopping-bag"></i> <span>{{count}}</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </header>
+    
+    <!-- Header Section End -->
+
+    <!-- Hero Section Begin -->
+
+
+          <!--body-->
+          {% block blog_slider %}{% endblock blog_slider %}
+          {% block main-content %}{% endblock main-content %}
+          {% block shop-content %}{% endblock shop-content %}
+          {% block cart_content %}{% endblock cart_content %}
+          {% block blog-page %}{% endblock blog-page %}
+          {% block content_checkout %}{% endblock content_checkout %}
+          {% block register_content %}{% endblock register_content %}
+          {% block login_content %}{% endblock login_content %}
+          {% block category_context %} {% endblock category_context %}
+          {% block information %}{% endblock information %}
+          {% block blog_winshop %}{% endblock blog_winshop %}
+          {% block add_address %}{% endblock add_address %}
+          {% block edit_address %}{% endblock edit_address %}
+          {% block edit_information %}{% endblock edit_information %}
+          {% block my_order %}{% endblock my_order %}
+
+
+    <footer id="footer" class="section section-grey">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<!-- footer widget -->
+				<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="footer">
+						<!-- footer logo -->
+						<div class="footer-logo">
+							<a class="logo" href="#">
+                                <a href="{% url 'home' %}"><img src="{% static 'app/images/logoo.png' %}" alt=""></a>
+		          </a>
+						</div>
+						<!-- /footer logo -->
+
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</p>
+
+						<!-- footer social -->
+						<ul class="footer-social">
+							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+							<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+							<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+						</ul>
+						<!-- /footer social -->
+					</div>
+				</div>
+				<!-- /footer widget -->
+
+				<!-- footer widget -->
+				<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="footer">
+						<h3 class="footer-header">My Account</h3>
+						<ul class="list-links">
+							<li><a href="#">My Account</a></li>
+							<li><a href="#">My Wishlist</a></li>
+							<li><a href="#">Compare</a></li>
+							<li><a href="#">Checkout</a></li>
+							<li><a href="#">Login</a></li>
+						</ul>
+					</div>
+				</div>
+				<!-- /footer widget -->
+
+				<div class="clearfix visible-sm visible-xs"></div>
+
+				<!-- footer widget -->
+				<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="footer">
+						<h3 class="footer-header">Customer Service</h3>
+						<ul class="list-links">
+							<li><a href="#">About Us</a></li>
+							<li><a href="#">Shiping & Return</a></li>
+							<li><a href="#">Shiping Guide</a></li>
+							<li><a href="#">FAQ</a></li>
+						</ul>
+					</div>
+				</div>
+				<!-- /footer widget -->
+
+				<!-- footer subscribe -->
+				<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="footer">
+						<h3 class="footer-header">Stay Connected</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
+						<form>
+							<div class="form-group">
+								<input class="input" placeholder="Enter Email Address">
+							</div>
+							<button class="primary-btn">Join Newslatter</button>
+						</form>
+					</div>
+				</div>
+				<!-- /footer subscribe -->
+			</div>
+			<!-- /row -->
+			<hr>
+			<!-- row -->
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2 text-center">
+					<!-- footer copyright -->
+					<div class="footer-copyright">
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="" target="_blank">Cyrochi</a>
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+					</div>
+					<!-- /footer copyright -->
+				</div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</footer>
+
+    <style>
+        /* CSS cho phần footer */
+#footer {
+    background-color: #f7f7f7; /* Màu nền của footer */
+    padding: 50px 0; /* Khoảng cách giữa nội dung và viền của footer */
+    color: #555; /* Màu chữ trong footer */
+}
+
+.footer {
+    margin-bottom: 30px; /* Khoảng cách giữa các phần widget trong footer */
+}
+
+.footer-logo img {
+    max-width: 100%; /* Đảm bảo hình ảnh logo không bị tràn ra ngoài */
+}
+
+p {
+    font-size: 14px; /* Cỡ chữ cho đoạn văn bản */
+}
+
+/* CSS cho các biểu tượng mạng xã hội */
+.footer-social {
+    list-style: none; /* Loại bỏ dấu chấm trước các biểu tượng */
+    padding: 0;
+}
+
+.footer-social li {
+    display: inline-block; /* Hiển thị các biểu tượng cạnh nhau */
+    margin-right: 10px; /* Khoảng cách giữa các biểu tượng */
+}
+
+.footer-social a {
+    color: #555; /* Màu của biểu tượng xã hội */
+    font-size: 20px; /* Cỡ chữ của biểu tượng xã hội */
+}
+
+/* CSS cho các danh sách trong footer */
+.list-links {
+    list-style: none; /* Loại bỏ dấu chấm trước các mục danh sách */
+    padding: 0;
+}
+
+.list-links li {
+    margin-bottom: 10px; /* Khoảng cách giữa các mục danh sách */
+}
+
+.list-links a {
+    color: #555; /* Màu chữ của các liên kết danh sách */
+    text-decoration: none; /* Loại bỏ gạch chân từ liên kết */
+}
+
+/* CSS cho biểu mẫu đăng ký newsletter */
+.form-group {
+    margin-bottom: 10px; /* Khoảng cách giữa các trường nhập */
+}
+
+.input {
+    width: 100%; /* Để trường nhập có chiều rộng 100% */
+    padding: 10px; /* Khoảng cách giữa nội dung và viền của trường nhập */
+    border: 1px solid #ccc; /* Viền của trường nhập */
+    border-radius: 4px; /* Góc bo tròn cho trường nhập */
+}
+
+.primary-btn {
+    background-color: #333; /* Màu nền của nút */
+    color: #fff; /* Màu chữ của nút */
+    border: none; /* Loại bỏ đường viền của nút */
+    padding: 10px 20px; /* Kích thước của nút */
+    border-radius: 4px; /* Góc bo tròn cho nút */
+    cursor: pointer; /* Biểu tượng con trỏ khi rê chuột vào nút */
+}
+
+.primary-btn:hover {
+    background-color: #555; /* Màu nền khi rê chuột vào nút */
+}
+
+    </style>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    </body>
+    <!-- Js Plugins -->
+    <script src="{%static 'app/js/addProduct.js' %} "></script>
+    <script src="{%static 'app/js/increaseProduct.js' %} "></script>
+    <script src="{%static 'app/js/reduceProduct.js' %} "></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="{%static 'app/js/bootstrap.min.js' %} "></script>
+{#    <script src="{%static 'app/js/jquery-3.3.1.min.js' %} "></script>#}
+    <script src="{%static 'app/js/jquery.nice-select.min.js' %} "></script>
+    <script src="{%static 'app/js/jquery.slicknav.js' %} "></script>
+    <script src="{%static 'app/js/jquery-ui.min.js' %} "></script>
+    <script src="{%static 'app/js/mixitup.min.js' %} "></script>
+    <script src="{%static 'app/js/owl.carousel.min.js' %} "></script>
+    <script src="{%static 'app/js/main.js' %} "></script>
+
+
+</html>
