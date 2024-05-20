@@ -59,7 +59,7 @@ class Product(models.Model):
         return url
 class Size(models.Model):
     product = models.ForeignKey(Product, related_name='sizes', on_delete=models.CASCADE)
-    size = models.CharField(max_length=50)
+    size = models.IntegerField(default=0)
     quantity = models.PositiveIntegerField()
 
     class Meta:

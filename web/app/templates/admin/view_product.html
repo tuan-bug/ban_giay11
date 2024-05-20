@@ -1,23 +1,6 @@
+{% extends 'admin/manage.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-        <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
-        <!-- Css Styles -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-        <link rel="stylesheet" href="{%static 'app/css/bootstrap.min.css' %}">
-        <link rel="stylesheet" href="{%static 'app/css/font-awesome.min.css' %}">
-        <link rel="stylesheet" href="{%static 'app/css/elegant-icons.css' %}">
-        <link rel="stylesheet" href="{%static 'app/css/nice-select.css' %}">
-        <link rel="stylesheet" href="{%static 'app/css/jquery-ui.min.css' %}">
-        <link rel="stylesheet" href="{%static 'app/css/owl.carousel.min.css' %}">
-        <link rel="stylesheet" href="{%static 'app/css/slicknav.min.css' %}">
-        <link rel="stylesheet" href="{%static 'app/css/style.css' %}">
-        <link rel="stylesheet" href="{%static 'app/sass/style.scss' %}">
-</head>
-<body>
+{% block blog-product %}
     <section class="product-details spad">
         <div class="container">
             <div class="row">
@@ -39,10 +22,11 @@
                             <li><b>Giá: </b> <span>{{product.price | floatformat:2}} VND</span></li>
                             <li><b>Giá khuyến mãi: </b> <span>{{product.price_sale | floatformat:2}} VND</span></li>
                             <li><b>Đơn vị:  </b> <span>{{product.unit}}</span></li>
-                            <li><b>Số lượng size 39:  </b> <span>{{product.count39}}</span></li> 
-                            <li><b>Số lượng size 40:  </b> <span>{{product.count40}}</span></li> 
-                            <li><b>Số lượng size 41:  </b> <span>{{product.count41}}</span></li>  
-                            <li><b>Số lượng :  </b> <span>{{count}}</span></li>
+                            {% for size in sizes %}
+                                <li><b>Số lượng size {{ size.size }}:  </b> <span>{{size.quantity}}</span></li>
+                            {% endfor %}
+
+
                         </ul>
                         
                     </div>
@@ -55,5 +39,4 @@
             </div>
         </div>
     </section>
-</body>
-</html>
+{% endblock blog-product %}

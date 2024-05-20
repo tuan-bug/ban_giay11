@@ -51,6 +51,11 @@ def Continue1(request):
         order.save()
 
         for item in items:
+            product_size = Size.objects.get(product=item.product, size=item.size)
+            if product_size.quantity >= item.quantity:
+                product_size.quantity -= item.quantity
+                product_size.save()
+
             items_order = OrderItem(product=item.product, order=order, quantity=item.quantity,size=item.size, total= item.product.price * item.quantity)
             items_order.save()
 
