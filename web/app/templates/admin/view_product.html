@@ -8,7 +8,7 @@
                     <div class="product__details__pic">
                         <div class="product__details__pic__item">
                             <img class="product__details__pic__item--large"
-                                src="{{product.ImageURL}}" alt="">
+                                 src="{{ product.ImageURL }}" alt="">
                         </div>
                     </div>
                 </div>
@@ -16,24 +16,28 @@
                 <div class="col-lg-4 col-md-4">
                     <div class="product__details__text">
                         <ul style="border-top: 0; padding-top: 0; margin-top: 0;">
-                            <li><b>Tên sản phẩm: </b> <span>{{product.name}}</span></li>
-                            <li><b>Danh mục: </b> <span>{{product.category.name}}</span></li>
-                            <li><b>Tên sản phẩm: </b> <span>{{product.name}}</span></li>
-                            <li><b>Giá: </b> <span>{{product.price | floatformat:2}} VND</span></li>
-                            <li><b>Giá khuyến mãi: </b> <span>{{product.price_sale | floatformat:2}} VND</span></li>
-                            <li><b>Đơn vị:  </b> <span>{{product.unit}}</span></li>
+                            <li><b>Tên sản phẩm: </b> <span>{{ product.name }}</span></li>
+                            <li><b>Danh mục: </b>
+                                {% for category in categories %}
+                                    {{ category.name }}, 
+                                {% endfor %}
+                            </li>
+                            <li><b>Tên sản phẩm: </b> <span>{{ product.name }}</span></li>
+                            <li><b>Giá: </b> <span>{{ product.price | floatformat:2 }} VND</span></li>
+                            <li><b>Giá khuyến mãi: </b> <span>{{ product.price_sale | floatformat:2 }} VND</span></li>
+                            <li><b>Đơn vị: </b> <span>{{ product.unit }}</span></li>
                             {% for size in sizes %}
-                                <li><b>Số lượng size {{ size.size }}:  </b> <span>{{size.quantity}}</span></li>
+                                <li><b>Số lượng size {{ size.size }}: </b> <span>{{ size.quantity }}</span></li>
                             {% endfor %}
 
 
                         </ul>
-                        
+
                     </div>
                     <div class="product__details__text">
                         <b>Mô tả</b>
-                        <span>{{product.describe}}</span>
-                        
+                        <span>{{ product.describe }}</span>
+
                     </div>
                 </div>
             </div>

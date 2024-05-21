@@ -95,8 +95,10 @@ def viewProduct(request):
     user = request.user
     print(user)
     product = get_object_or_404(Product, id=id)
+    categories = product.category.all()
     sizes = Size.objects.filter(product=product)
     context = {'product': product,
                'sizes': sizes,
+               'categories': categories,
                }
     return render(request, 'admin/view_product.html', context)
